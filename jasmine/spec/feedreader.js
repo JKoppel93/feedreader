@@ -85,7 +85,7 @@ $(function() {
      */
 
     it('contains at least a single entry', function(done) {
-      expect($('.feed .entry')).toExist(); // expects a feed-entry to be present, more specifically checks to see if the CSS is currently present
+      expect($('.feed .entry').length).toBeGreaterThan(0); // expects a feed-entry to be present, more specifically checks to see if there is at least 1 .entry currently present
       done(); // call done in order to finish beforeEach
     });
   });
@@ -96,7 +96,7 @@ $(function() {
     var feedContent1, feedContent2; // will be used to compare
     beforeEach(function(done) {
       loadFeed(2, function() { // asynchronous call, time 2
-        feedContent1 = $('.feed'); // store the feed into feedContent1
+        feedContent1 = $('.feed').html(); // store the feed into feedContent1
         done();
       });
     });
@@ -104,8 +104,9 @@ $(function() {
     /* This test will check to see if the content on the page changes with each loadFeed call */
 
     it('content changes', function(done) {
+      console.log(feedContent1);
       loadFeed(3, function() { // seperate LoadFeed call, this time time 3 to ensure it runs after previous loadFeed call
-        feedContent2 = $('.feed'); // store the feed into feedContent2
+        feedContent2 = $('.feed').html(); // store the feed into feedContent2
         done();
       });
       expect(feedContent1).not.toEqual(feedContent2); // expect for both feeds to have different content, specifically feedContent1 not equal to feedContent2
