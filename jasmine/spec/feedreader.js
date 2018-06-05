@@ -104,7 +104,6 @@ $(function() {
     /* This test will check to see if the content on the page changes with each loadFeed call */
 
     it('content changes', function(done) {
-      console.log(feedContent1);
       loadFeed(3, function() { // seperate LoadFeed call, this time time 3 to ensure it runs after previous loadFeed call
         feedContent2 = $('.feed').html(); // store the feed into feedContent2
         done();
