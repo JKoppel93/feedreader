@@ -33,9 +33,11 @@ $(function() {
 
     it('URLs are defined and not empty', function() {
 
+
       allFeeds.forEach(function(feed) { // iterating through each feed in the allFeeds array
         expect(feed.url).toBeDefined(); // expect each URL to be defined
         expect(feed.url).toBeTruthy(); // expect each URL to contain text
+      });
     });
 
     /* This is essentially the above test, but applied to the names of the URLs */
