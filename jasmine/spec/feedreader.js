@@ -33,10 +33,9 @@ $(function() {
 
     it('URLs are defined and not empty', function() {
 
-      for (var i = 0; i < allFeeds.length; i++) { // iterating through each feed in the allFeeds array
-        expect(allFeeds[i].url).toBeDefined(); // expect each URL to be defined
-        expect(allFeeds[i].url).toBeTruthy(); // expect each URL to contain text
-      }
+      allFeeds.forEach(function(feed) { // iterating through each feed in the allFeeds array
+        expect(feed.url).toBeDefined(); // expect each URL to be defined
+        expect(feed.url).toBeTruthy(); // expect each URL to contain text
     });
 
     /* This is essentially the above test, but applied to the names of the URLs */
@@ -94,10 +93,17 @@ $(function() {
 
   describe('New Feed Selection', function() {
     var feedContent1, feedContent2; // will be used to compare
+
     beforeEach(function(done) {
-      loadFeed(2, function() { // asynchronous call, time 2
+      loadFeed(0, function() {
+        // feed 0 done loading
         feedContent1 = $('.feed').html(); // store the feed into feedContent1
-        done();
+        loadFeed(1, function() {
+          // feed 1 done loading
+          feedContent2 = $('.feed').html(); // store the feed into feedContent2
+          // all variables initialised, can begin tests
+          done();
+        });
       });
     });
 
